@@ -14,6 +14,7 @@ class Engine {
     // Initially, we have no enemies in the game. The enemies property refers to an array
     // that contains instances of the Enemy class
     this.enemies = [];
+
     // We add the background image to the game
     addBackground(this.root);
   }
@@ -33,6 +34,7 @@ class Engine {
     let timeDiff = new Date().getTime() - this.lastFrame;
 
     this.lastFrame = new Date().getTime();
+
     // We use the number of milliseconds since the last call to gameLoop to update the enemy positions.
     // Furthermore, if any enemy is below the bottom of our game, its destroyed property will be set. (See Enemy.js)
     this.enemies.forEach((enemy) => {
@@ -56,8 +58,19 @@ class Engine {
 
     // We check if the player is dead. If he is, we alert the user
     // and return from the method (Why is the return statement important?)
+
     if (this.isPlayerDead()) {
-      window.alert('Game over');
+      addRestartButton();
+      //stop points counter
+      clearInterval(countdown);
+      //click to restart game
+      document.removeEventListener("keydown", keydownHandler);
+      //spacebar to restart game
+      document.addEventListener("keyup", (event) => {
+        if (event.code === "Space") {
+          location.reload();
+        }
+      });
       return;
     }
 
@@ -68,6 +81,30 @@ class Engine {
   // This method is not implemented correctly, which is why
   // the burger never dies. In your exercises you will fix this method.
   isPlayerDead = () => {
-    return false;
+    const player = document.getElementById("player");
+    const playerPositionY =
+      player.getBoundingClientRect().top -
+      //have to adjust Y position proportionally since we moved the gameboard out from initial position
+      document.body.getBoundingClientRect().top;
+    const playerPositionX =
+      player.getBoundingClientRect().left -
+      //have to adjust X position proportionally since we moved the gameboard out from initial position
+      document.body.getBoundingClientRect().left;
+    let playerDead = false;
+
+    this.enemies.forEach((catEnemy) => {
+      if (
+        //if enemy touches player (same y position)
+        //we want  bottom of  enemy img to touch top of player img, so need to include - ENEMY_HEIGHT
+        //without this, a collision would happen if top of the enemy img touches top of player img (not what we want)
+        catEnemy.y - 10 > playerPositionY - ENEMY_HEIGHT &&
+        //AND enemy is in same lane (same x position)
+        catEnemy.x === playerPositionX
+      ) {
+        playerDead = true;
+      }
+    });
+
+    return playerDead;
   };
 }

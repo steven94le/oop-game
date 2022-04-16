@@ -40,10 +40,12 @@ const nextEnemySpot = (enemies) => {
 // The parameter represents the DOM node to which we will add the background
 const addBackground = (root) => {
   // We create a new img DOM node.
-  const bg = document.createElement('img');
+  const bg = document.createElement("img");
 
   // We set its src attribute and the height and width CSS attributes
-  bg.src = 'images/stars.png';
+  bg.src = "images/app.png";
+  bg.style.borderRadius = "25px";
+  bg.style.border = "solid lightgreen";
   bg.style.height = `${GAME_HEIGHT}px`;
   bg.style.width = `${GAME_WIDTH}px`;
 
@@ -53,14 +55,66 @@ const addBackground = (root) => {
   // We don't want the enemies to go beyond the lower edge of the image
   // so we place a white div to hide the enemies after they reach the bottom.
   // To see what it does, you can comment out all the remaining lines in the function to see the effect.
-  const whiteBox = document.createElement('div');
+  // const whiteBox = document.createElement("div");
 
-  // We put a high z-index so that the div is placed over all other DOM nodes
-  whiteBox.style.zIndex = 100;
-  whiteBox.style.position = 'absolute';
-  whiteBox.style.top = `${GAME_HEIGHT}px`;
-  whiteBox.style.height = `${ENEMY_HEIGHT}px`;
-  whiteBox.style.width = `${GAME_WIDTH}px`;
-  whiteBox.style.background = '#fff';
-  root.append(whiteBox);
+  // // We put a high z-index so that the div is placed over all other DOM nodes
+  // whiteBox.style.zIndex = 100;
+  // whiteBox.style.position = "absolute";
+  // whiteBox.style.top = `${GAME_HEIGHT}px`;
+  // whiteBox.style.height = `${ENEMY_HEIGHT + 100}px`;
+  // whiteBox.style.width = `${GAME_WIDTH + 25}px`;
+  // whiteBox.style.background = "#fff";
+  // //expanded the white box so you can't see left-most cat after it leaves the gameplay box
+  // whiteBox.style.marginLeft = "-10px";
+  // whiteBox.style.display = "none";
+  // root.append(whiteBox);
 };
+
+const addRestartButton = () => {
+  //restart button appears after player is dead
+  const divApp = document.getElementById("app");
+  const btn = document.createElement("button");
+  btn.innerHTML = "Restart Game" + "<br>" + "(Spacebar To Play Again)";
+  btn.style.position = "absolute";
+  btn.style.height = `${ENEMY_HEIGHT}px`;
+  btn.style.width = `${GAME_WIDTH}px`;
+  btn.style.background = "lightgreen";
+  btn.style.color = "white";
+  btn.style.left = `${-GAME_WIDTH - 100}px`;
+  btn.style.zIndex = "9000";
+  btn.style.borderRadius = "25px";
+  btn.style.border = "solid 2px white";
+  btn.style.fontSize = "24px";
+
+  divApp.appendChild(btn);
+  btn.addEventListener("click", () => {
+    location.reload();
+  });
+};
+
+//scoreboard
+const divApp = document.getElementById("app");
+const score = document.createElement("span");
+score.id = "score";
+
+score.style.position = "absolute";
+score.style.textAlign = "center";
+score.style.width = "185px";
+score.style.left = "550px";
+score.style.top = "5px";
+score.style.color = "white";
+score.style.backgroundColor = "lightgreen";
+score.style.fontSize = "36px";
+score.style.fontFamily = "Helvetica";
+score.style.border = "solid 2px white";
+score.style.borderRadius = "5px";
+
+divApp.appendChild(score);
+points = 0;
+score.innerHTML = "SCORE: " + points;
+
+//increase points by 1 for each second alive
+let countdown = setInterval(function () {
+  points++;
+  score.innerHTML = "SCORE: " + points;
+}, 1000);

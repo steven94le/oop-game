@@ -1,6 +1,6 @@
 // We create an instance of the Engine class. Looking at our index.html,
 // we see that it has a div with an id of `"app"`
-const gameEngine = new Engine(document.getElementById('app'));
+const gameEngine = new Engine(document.getElementById("app"));
 
 // keydownHandler is a variable that refers to a function. The function has one parameter
 // (does the parameter name matter?) which is called event. As we will see below, this function
@@ -9,19 +9,38 @@ const gameEngine = new Engine(document.getElementById('app'));
 const keydownHandler = (event) => {
   // event.code contains a string. The string represents which key was press. If the
   // key is left, then we call the moveLeft method of gameEngine.player (where is this method defined?)
-  if (event.code === 'ArrowLeft') {
+  if (event.code === "ArrowLeft") {
     gameEngine.player.moveLeft();
   }
 
   // If `event.code` is the string that represents a right arrow keypress,
   // then move our hamburger to the right
-  if (event.code === 'ArrowRight') {
+  if (event.code === "ArrowRight") {
     gameEngine.player.moveRight();
   }
 };
 
 // We add an event listener to document. document the ancestor of all DOM nodes in the DOM.
-document.addEventListener('keydown', keydownHandler);
+document.addEventListener("keydown", keydownHandler);
 
 // We call the gameLoop method to start the game
 gameEngine.gameLoop();
+
+//background image
+document.body.style.background =
+  "url('./images/background.png') no-repeat center center";
+document.body.style.backgroundSize = "100%";
+document.body.style.position = "fixed";
+document.body.style.marginLeft = "50%";
+document.body.style.marginTop = "10%";
+document.body.style.transform = "translate(-50%, -10%)";
+
+//pokemon gif
+let elem = document.createElement("img");
+elem.src = "images/pokegif.gif";
+elem.style.position = "absolute";
+elem.style.left = "465px";
+elem.style.top = "100px";
+elem.style.height = `${ENEMY_HEIGHT}px`;
+elem.style.width = `${GAME_WIDTH}px`;
+divApp.appendChild(elem);
