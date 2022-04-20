@@ -92,14 +92,14 @@ class Engine {
       document.body.getBoundingClientRect().left;
     let playerDead = false;
 
-    this.enemies.forEach((catEnemy) => {
+    this.enemies.forEach((enemy) => {
       if (
         //if enemy touches player (same y position)
         //we want  bottom of  enemy img to touch top of player img, so need to include - ENEMY_HEIGHT
         //without this, a collision would happen if top of the enemy img touches top of player img (not what we want)
-        catEnemy.y - 10 > playerPositionY - ENEMY_HEIGHT &&
+        enemy.y - 125 > playerPositionY - ENEMY_HEIGHT &&
         //AND enemy is in same lane (same x position)
-        catEnemy.x === playerPositionX
+        enemy.x === playerPositionX
       ) {
         playerDead = true;
       }

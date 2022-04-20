@@ -17,6 +17,7 @@ class Player {
     // DOM node in a property.
     this.domElement = document.createElement("img");
     this.domElement.src = "images/pikachu.png";
+
     this.domElement.style.height = "75";
     this.domElement.style.width = "75";
     this.domElement.style.position = "absolute";
