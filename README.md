@@ -1,6 +1,6 @@
 # Object-Oriented Programming Game :joystick:
 
-<p align="center"><img width="1366" alt="image" src="https://user-images.githubusercontent.com/76791687/186182412-e70f77aa-7104-41b5-a49f-1205774e742a.png"></p>
+![oop-game](https://user-images.githubusercontent.com/76791687/186220143-0fb58d9e-838c-4141-bbca-040d94dc7f71.gif)
 
 # Introduction :wave:
 
