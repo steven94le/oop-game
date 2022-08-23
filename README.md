@@ -4,7 +4,7 @@
 
 # Introduction :wave:
 
-Our first bootcamp project was done using vanilla JavaScript (focusing on object-oriented programming and DOM manipulation). A simple game where you need to dodge incoming projectiles that progressively speed up and increase in number as the game goes on. A point is granted for every second the user stays alive. Design elements inspired by Pokemon. All images were found online.
+Our first bootcamp project was done using vanilla JavaScript (focusing on object-oriented programming and DOM manipulation). A simple game where you need to dodge incoming projectiles that progressively speed up and increase in number as the game goes on. A point is granted for every second the user stays alive. Styling was up to the students, so I went with a light Pokemon theme! All images were found online.
 
 ## **Demo :keyboard:**
 
